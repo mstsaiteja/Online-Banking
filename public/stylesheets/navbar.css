@@ -47,6 +47,13 @@ a:hover {
     color: yellow;
 }
 
+#info {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: yellow;
+}
+
 #welcome {
     font-size: 80px;
     text-align: center;
@@ -55,9 +62,12 @@ a:hover {
     top: 20vh;
 }
 
-#info {
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    color: yellow;
+#about {
+    background-color: black;
+    border: 1px solid white;
+    padding: 25px;
+    width: 70vw;
+    position: absolute;
+    left: 15vw;
+    top: 150px;
 }
