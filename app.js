@@ -37,6 +37,12 @@ app.use('/login', login);
 const account = require('./routes/account');
 app.use('/account', account);
 
+//About
+app.get('/about', (req, res) => {
+    res.render('about');
+    logger.set_logger(null);
+});
+
 app.listen(PORT, async (err) => {
     console.log(`Listening on port ${PORT}...!`);
     database.connect();
