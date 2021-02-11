@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+	<title>SignUp</title>
+	<link rel="stylesheet" href="/stylesheets/form.css">
+
+<%- include('../partials/body') %>
+
+	<form style="top: 200px" action="/signup/otp" method="post">
+		<div id="info">SignUp</div>
+		<div>
+			<label for="email">Email</label><br>
+			<input type="email" id="email" name="email" required>
+		</div>
+		<div id="warn"><%- msg%></div>
+		<div>
+			<input type="submit" value="Get OTP">
+		</div>
+	</form>
+
+    <script>
+
+		document.getElementById("warn").style.display="block";
+		setTimeout(()=>{document.getElementById("warn").style.display="none"},3000);		
+
+	</script>
+
+<%- include('../partials/footer') %>

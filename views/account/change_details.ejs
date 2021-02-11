@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+	<title>Change Details</title>
+	<link rel="stylesheet" href="/stylesheets/form.css">
+
+<%- include('../partials/body') %>
+
+    <form style="top: 160px" action="/account/update_details/<%-user.email%>" method="post">
+        <div id="info">Change Details</div>
+        <div>
+			<label for="name">Full Name</label><br>
+			<input type="string"id="name" name="name" value='<%- user.name%>' required>
+		</div>
+		<div>
+			<label for="mobile">Mobile</label><br>
+			<input type="string" id="mobile" name="mobile" value='<%- user.mobile%>' minlength=10 maxlength=10 required>
+		</div>
+		<div>
+			<label for="address" >Address</label><br>
+			<input type="string" id="address" name="address" value='<%- user.address%>' required>
+		</div>
+		<div>
+            <input type="submit" value="Change">
+		</div>
+    </form> 
+
+	<script>
+		document.getElementById("list").innerHTML = "<a href='/account/<%-user.email%>'>Go to Account</a>";
+	</script>
+<%- include('../partials/footer') %>

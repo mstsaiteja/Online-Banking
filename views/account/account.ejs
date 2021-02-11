@@ -1,0 +1,64 @@
+<%- include('../partials/header') %>
+
+	<title>Account</title>
+	<link rel="stylesheet" href="/stylesheets/account.css">
+
+<%- include('../partials/body') %>
+
+	<img src="/images/menu.png" id="menu" alt="MENU" title="options">
+
+	<div id="data">
+		<table>
+			<tr> <th colspan="2">Account Details</th> </tr>
+			<tr> <td>Account No</td> <td><%- user._id%> </td> </tr>
+			<tr> <td>Amount</td> <td><%- user.amount%> INR</td> </tr>
+		</table>
+		<table>
+			<tr> <th colspan="2">Personal Details</th> </tr>
+			<tr> <td>Full Name</td> <td><%- user.name%></td> </tr>
+			<tr> <td>Email</td> <td><%- user.email%></td> </tr>
+			<tr> <td>Mobile No</td> <td><%- user.mobile%></td> </tr>
+			<tr> <td>Address</td> <td><%- user.address%></td> </tr>
+		</table>
+	</div>
+
+	<div id="buttons">
+
+		<a href="/account/change_email/<%-user.email%>">Change Email</a>
+		<a href="/account/change_password/<%-user.email%>">Change Password</a>
+		<a href="/account/change_details/<%-user.email%>">Edit Details</a>
+		<a href="/account/transfer/<%-user.email%>">Transfer Money</a>
+		<a href="/account/transactions/<%-user.email%>">Transaction Details</a>
+		<a href="/login">Log Out</a>
+
+	</div>
+
+	<script>
+		document.getElementById("list").innerHTML = '<span style="font-size:20px"><span style="color:white;font-size:20px">Welcome</span> <%- user.name%></span>';
+
+		document.getElementById("menu").setAttribute("onclick","display()");
+
+		function display(){
+			const data = document.getElementById("data");
+			const options = document.getElementById("buttons");
+			const state = options.style.right;
+			if(state=="0px") {
+				options.style.right = "-220px";
+				data.style.left = "15vw";
+			}
+			else {
+				options.style.right = "0px";
+				data.style.left = "50px";
+			}
+		}
+
+		$(document).ready( () => {
+			const msg = '<%- msg%>';
+			if(msg) {
+				alert(msg);
+				location.reload(true);
+			}
+		});
+	</script>
+
+<%- include('../partials/footer') %>

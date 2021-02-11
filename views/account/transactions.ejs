@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+    <title>Transactions</title>
+    <link rel="stylesheet" href="/stylesheets/transactions.css">
+
+<%- include('../partials/body') %>
+
+    <br>
+    <div id="info">Transaction Details</div>
+
+    <div id="heading">
+        <table>
+            <tr id="fix">
+                <th>Date</th>
+                <th>Transaction</th>
+                <th>Amount</th>
+            </tr>
+        </table>
+    </div>
+    
+
+    <div id="data">
+        <table>
+            <%  data.forEach( (transaction) => { %>
+                <tr>
+                    <td><%- transaction.time %></td>
+                    <% if(transaction.amount>0){%>
+                        <td>Received from <%- transaction.details %></td>
+                        <td id="pos">+<%- transaction.amount %></td>
+                    <%}else{%>
+                        <td>Sent to <%- transaction.details %></td>
+                        <td id="neg"><%- transaction.amount %></td>
+                    <%}%>
+                </tr>
+            <%  });  %>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById("list").innerHTML = "<a href='/account/<%-email%>'>Go to Account</a>";
+    </script>
+
+<%- include('../partials/footer') %>

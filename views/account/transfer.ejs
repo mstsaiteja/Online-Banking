@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+
+	<title>Transfer</title>
+	<link rel="stylesheet" href="/stylesheets/form.css">
+	
+<%- include('../partials/body') %>
+    
+    <form style="top: 150px" action="/account/transfer_money/<%-email%>" method="post" onsubmit="return validation()">
+        <div id="info">Transfer Money</div>
+        <div>
+			<label for="receiver">Receiver</label><br>
+			<input type="email" id="receiver" name="receiver" required>
+        </div>
+        <div>
+            <label for="money">Amount</label><br>
+			<input type="number" id="money" name="money" min=1 required>
+        </div>
+        <div>
+			<label for="password">Password</label><br>
+			<input type="password" id="password" name="password" required>
+		</div>
+		<div id="warn"><%- msg%></div>
+        <div>
+			<input type="submit" value="Transfer">
+		</div>
+	</form>
+	
+    <script>
+
+		document.getElementById("warn").style.display="block";
+		setTimeout(()=>{document.getElementById("warn").style.display="none"},3000);
+
+		document.getElementById("list").innerHTML = "<a href='/account/<%-email%>'>Go to Account</a>";
+
+		function validation(){
+			const email = '<%- email%>';
+			const receiver = document.getElementById("receiver").value;
+			if(email==receiver){
+				document.getElementById("warn").style.display="block";
+				document.getElementById("warn").innerHTML = '*Receiver should not be yourself';
+				setTimeout( () => {
+					document.getElementById("warn").style.display="none";
+				},3000);
+				return false;
+			}
+			else return true;
+		}
+	</script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+    <title>OTP</title>
+    <link rel="stylesheet" href="/stylesheets/form.css">
+
+<%- include('../partials/body') %>
+
+    <form style="top: 180px" action="/account/update_email/<%- old_email%>" method="post">
+        <div id="info">Change Email</div>
+		<div>
+			<label for="email">New Email</label><br>
+			<input type="string" id="email" name="email" value='<%- new_email%>' style="cursor:not-allowed" readonly>
+		</div>
+        <div>
+			<label for="otp">Enter OTP<span id="time"> (*Valid for 10 minutes) </span></label><br>
+			<input type="string" id="otp" name="otp" autocomplete="off">
+        </div>
+        <div>
+            <input type="submit" id="submit">
+            <input type = "submit" value="Resend OTP" formaction="/account/otp/<%- old_email%>">
+        </div>
+	</form>
+
+    <script>
+
+        document.getElementById("list").innerHTML = "<a href='/account/<%-old_email%>'>Go to Account</a>";
+
+    </script>
+
+<%- include('../partials/footer') %>

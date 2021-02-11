@@ -1,0 +1,43 @@
+form {
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 20px;
+    width: 26vw;
+    position: absolute;
+    left: 37vw;
+    top: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 20vw;
+    height: 25px;
+    color: black;
+    margin: 8px 0;
+}
+
+input[type="submit"] {
+    width: 100px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    color: yellow;
+}
+
+#warn,
+#time {
+    font-size: 10px;
+    color: red;
+    display: none;
+}
+
+#time {
+    display: inline;
+}

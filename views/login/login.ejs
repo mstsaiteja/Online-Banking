@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+	<title>Login</title>
+	<link rel="stylesheet" href="/stylesheets/form.css">
+	<style>
+		#forgot{
+			font-size: 10px;
+		}
+		#forgot:hover{
+			color: red;
+		}
+	</style>
+
+<%- include('../partials/body') %>
+
+	
+	<form style="top: 160px" id="form" action="/login/check_account" method="post">
+		<div id="info">Login</div>
+        <div>
+			<label for="email">Email</label><br>
+			<input type="string" id="email" name="email" required>
+        </div>
+        <div>
+			<label for="password">Password</label><br>
+			<input type="password" id="password" name="password" required>
+		</div>
+		<div id="warn"><%- msg%></div>
+		<div>
+			<a href="/login/forgot_password" id="forgot">Forgot Password?</a>
+		</div>
+        <div>
+			<input type="submit" value="Login">
+		</div>
+	</form>
+	
+    <script>
+
+		document.getElementById("warn").style.display="block";
+		setTimeout(()=>{document.getElementById("warn").style.display="none"},3000);
+
+	</script>
+
+<%- include('../partials/footer') %>

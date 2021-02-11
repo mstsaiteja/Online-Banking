@@ -1,0 +1,63 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    color: white;
+    font-family: sans-serif;
+}
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url(/images/background.jpg);
+    background-size: cover;
+}
+
+#navbar {
+    background-color: black;
+    border: 1px solid white;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+#navbar span {
+    font-size: 25px;
+    font-weight: bold;
+    color: yellow;
+}
+
+#logo {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+#list {
+    position: absolute;
+    right: 50px;
+    transition: 0.5s;
+}
+
+#list a {
+    text-decoration: none;
+    margin: 0 20px;
+}
+
+a:hover {
+    color: yellow;
+}
+
+#welcome {
+    font-size: 80px;
+    text-align: center;
+    color: yellow;
+    position: relative;
+    top: 20vh;
+}
+
+#info {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: yellow;
+}

@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+	<title>Change Email</title>
+	<link rel="stylesheet" href="/stylesheets/form.css">
+
+<%- include('../partials/body') %>
+	
+	<form style="top: 200px" action = "/account/otp/<%-email%>" onsubmit = "return validate()" method="post">
+		<div id="info">Change Email</div>
+		<div>
+			<label for="email">New Email</label><br>
+			<input type="email" id="email" name="email" required>
+		</div>
+		<div id="warn"><%- msg%></div>
+		<div>
+			<input type="submit" value="Get OTP">
+		</div>
+	</form>
+
+    <script>
+		const doc = document.getElementById("warn");
+		doc.style.display="block";
+		setTimeout(()=>{doc.style.display="none"},3000);
+
+		document.getElementById("list").innerHTML = "<a href='/account/<%-email%>'>Go to Account</a>";
+
+		function validate(){
+			const new_email = document.getElementById("email").value;
+			if(new_email=='<%-email%>')
+			{
+				doc.innerHTML = "*New Email same as present Email";
+				doc.style.display="block";
+				setTimeout(()=>{doc.style.display="none"},3000);
+				return false;
+			}
+			else return true;
+		}
+	</script>
+
+<%- include('../partials/footer') %>

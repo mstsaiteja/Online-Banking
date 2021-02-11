@@ -1,0 +1,50 @@
+#data {
+    width: 90vw;
+    height: 70vh;
+    position: relative;
+    left: 5vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#heading {
+    position: relative;
+    width: 90vw;
+    left: 5vw;
+    overflow-x: hidden;
+}
+
+table {
+    background-color: rgba(0, 0, 0);
+    border-collapse: collapse;
+}
+
+td,
+th {
+    width: 20vw;
+}
+
+td:nth-child(2),
+th:nth-child(2) {
+    width: 50vw;
+}
+
+tr,
+td {
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid white;
+    height: 50px;
+}
+
+th {
+    color: yellow;
+}
+
+#pos {
+    color: green;
+}
+
+#neg {
+    color: red;
+}

@@ -1,0 +1,71 @@
+body {
+    width: 100vw;
+    overflow: hidden;
+}
+
+#data {
+    background-color: black;
+    width: 70vw;
+    position: absolute;
+    left: 15vw;
+    top: 100px;
+    border: 1px solid white;
+    transition: 0.8s;
+}
+
+table {
+    border-collapse: collapse;
+    width: 70vw;
+}
+
+tr,
+th,
+td {
+    font-size: 20px;
+    padding: 10px 20px;
+    border: 1px solid white;
+}
+
+th {
+    color: yellow;
+}
+
+#buttons {
+    position: absolute;
+    top: 100px;
+    right: -220px;
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: 0.8s;
+}
+
+#buttons a {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 20px;
+    outline: none;
+    width: 150px;
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#buttons a:hover {
+    color: yellow;
+}
+
+#menu {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
