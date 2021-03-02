@@ -1,9 +1,10 @@
 const express = require('express');
 const logger = require('./routes/logger');
 const database = require('./routes/database');
+require('dotenv-safe').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 //Serve static files
 app.use(express.static('public'));

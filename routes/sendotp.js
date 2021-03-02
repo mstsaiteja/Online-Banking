@@ -1,10 +1,11 @@
 const nodemailer = require('nodemailer');
+require('dotenv-safe').config();
 
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
-		user: 'maddileti44saiteja@gmail.com',
-		pass: 'password13579'
+		user: process.env.EMAIL,
+		pass: process.env.PASS
 	}
 });
 
@@ -17,7 +18,7 @@ function sendotp(receiver)
 	const msg = `Your OTP for Online Banking System is ${otp} and is valid till ${time}`;
 
 	const mailOptions = {
-		from: 'maddileti44saiteja@gmail.com',
+		from: process.env.EMAIL,
 		to: `${receiver}`,
 		subject: 'One Time Password(OTP)',
 		text: `${msg}`
