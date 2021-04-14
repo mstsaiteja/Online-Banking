@@ -5,7 +5,7 @@
 
 <%- include('../partials/body') %>
 
-    <form style="top: 160px" action="/account/update_details/<%-user.email%>" method="post">
+    <form style="top: 160px" action="/account/update_details" method="post">
         <div id="info">Change Details</div>
         <div>
 			<label for="name">Full Name</label><br>
@@ -25,6 +25,6 @@
     </form> 
 
 	<script>
-		document.getElementById("list").innerHTML = "<a href='/account/<%-user.email%>'>Go to Account</a>";
+		document.getElementById("list").innerHTML = "<a href='/account'>Go to Account</a>";
 	</script>
 <%- include('../partials/footer') %>

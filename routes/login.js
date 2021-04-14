@@ -1,65 +1,47 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
-const database = require('./database');
-const sendotp = require('./sendotp');
-const logger = require('./logger');
+const UserModel = require('../models/User');
+const sendotp = require('../controllers/sendotp');
 
-const saltRounds = 10;
-const client = database.client;
+const {checkNotAuthenticated} = require('../config/passport-config');
 
-let msg = null;
-let forgot_msg = null;
-let otp = null;
+router.use(checkNotAuthenticated);
+
+//Passport Authentication
+const {initializePassport} = require('../config/passport-config');
+initializePassport(passport);
 
 //login
 router.get('/',(req,res) => {
-	res.render('login/login', {msg: msg});
-	msg = null;
-	logger.set_logger(null);
+	res.render('login/login',{msg: req.flash('error')});
 });
 
 //check account
-router.post('/check_account', (req,res) => {
-	const db = client.db('bank');
-	const collection = db.collection('customers');
-	collection.findOne({email : req.body.email}, (err,user) => {
-		if(!user){
-			msg = "*Account doesn't Exist";
-			res.redirect('/login');
-		}
-		else{
-			bcrypt.compare(req.body.password,user.password,(err,hashed) => {
-				if(hashed) res.redirect(307,'/account');                             
-				else {
-					msg = "*Incorrect Password";
-					res.redirect('/login');
-				}
-			});
-		}
-	});
-});
+router.post('/check_account', passport.authenticate('local',{
+	successRedirect: '/account',
+	failureRedirect: '/login',
+	failureFlash: true
+}));
 
 //forgot password
 router.get('/forgot_password', (req,res) => {
-    res.render('login/forgot_password',{msg : forgot_msg});
-    forgot_msg = null;
-	logger.set_logger(null);
+    res.render('login/forgot_password',{msg : req.flash('forgot_msg')});
 });
 
 //otp
 router.post('/forgot_password/otp', (req,res) => {
-	const db = client.db('bank');
-	const collection = db.collection('customers');
-	collection.findOne({ email : req.body.email }, (err,user) => {
+	UserModel.findOne({ email : req.body.email }, (err,user) => {
 		if(user) {
-			otp = sendotp(req.body.email);
-			setTimeout( () => {otp = null;} , 10*60000);
+			const otp = sendotp(req.body.email);
+			req.flash('forgot_otp',`${otp}`);
+			setTimeout(()=>{req.flash('forgot_otp',null)},10*60*1000)
 			res.render('login/otp',{email : req.body.email});
 		}
 		else {
-			forgot_msg = "*Account doesn't Exist";
+			req.flash('forgot_msg',"*Account doesn't Exist");
 			res.redirect('/login/forgot_password');
 		}
 	});
@@ -67,26 +49,25 @@ router.post('/forgot_password/otp', (req,res) => {
 
 //details
 router.post('/forgot_password/new', (req,res) => {
+	const otp = req.flash('forgot_otp');
 	if(otp == req.body.otp) res.render('login/password',{ email : req.body.email });
 	else{
-        forgot_msg = '*Wrong OTP';
+        req.flash('forgot_msg','*Wrong OTP');
 		res.redirect('/login/forgot_password');
 	}
 });
 
 router.post('/forgot_password/update', (req,res) => {
-	const db = client.db('bank');
-	const collection = db.collection('customers');
 	const query = {email: req.body.email};
 
-	collection.findOne(query, (err,result) => {
-		bcrypt.hash(req.body.password,saltRounds,(err,result) => {
+	UserModel.findOne(query, (err,result) => {
+		bcrypt.hash(req.body.password,10,(err,result) => {
 			const new_values = { $set : {password : result} };
-			collection.updateOne(query , new_values, (err) => {
+			UserModel.updateOne(query , new_values, (err) => {
 				if(err) console.log('Unable to update password...!');
 				else console.log(`Password Successfully Updated...!`);
-				logger.set_msg('Your Password was Successfully Updated...!');
-				res.redirect(307,'/account');                                  
+				req.flash('logger_msg','Your Password was Successfully Updated...!')
+				res.redirect(307,'/login/check_account');                                  
 			});
 		});
 	});

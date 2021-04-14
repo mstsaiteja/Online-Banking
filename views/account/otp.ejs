@@ -5,7 +5,7 @@
 
 <%- include('../partials/body') %>
 
-    <form style="top: 180px" action="/account/update_email/<%- old_email%>" method="post">
+    <form style="top: 180px" action="/account/update_email" method="post">
         <div id="info">Change Email</div>
 		<div>
 			<label for="email">New Email</label><br>
@@ -17,13 +17,13 @@
         </div>
         <div>
             <input type="submit" id="submit">
-            <input type = "submit" value="Resend OTP" formaction="/account/otp/<%- old_email%>">
+            <input type = "submit" value="Resend OTP" formaction="/account/otp">
         </div>
 	</form>
 
     <script>
 
-        document.getElementById("list").innerHTML = "<a href='/account/<%-old_email%>'>Go to Account</a>";
+        document.getElementById("list").innerHTML = "<a href='/account'>Go to Account</a>";
 
     </script>
 

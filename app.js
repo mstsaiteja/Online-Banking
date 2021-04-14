@@ -1,10 +1,14 @@
 const express = require('express');
-const logger = require('./routes/logger');
-const database = require('./routes/database');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
+
 require('dotenv-safe').config();
+require('./config/database-config');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
+const {checkAuthenticated, checkNotAuthenticated} = require('./config/passport-config')
 
 //Serve static files
 app.use(express.static('public'));
@@ -17,13 +21,24 @@ app.use(express.urlencoded({
     extended: false
 }));
 
+app.use(express.json());
+
+app.use(flash());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Routes
 
 //Home
-app.get('/', (req, res) => {
+app.get('/',checkNotAuthenticated, (req, res) => {
     res.render('home');
-    logger.set_logger(null);
 });
 
 //SignUp
@@ -39,12 +54,11 @@ const account = require('./routes/account');
 app.use('/account', account);
 
 //About
-app.get('/about', (req, res) => {
+app.get('/about',checkNotAuthenticated, (req, res) => {
     res.render('about');
-    logger.set_logger(null);
 });
+
 
 app.listen(PORT, async (err) => {
     console.log(`Listening on port ${PORT}...!`);
-    database.connect();
 });

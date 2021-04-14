@@ -23,12 +23,12 @@
         <table>
             <%  data.forEach( (transaction) => { %>
                 <tr>
-                    <td><%- transaction.time %></td>
+                    <td><%- (transaction.time).slice(0,16) %></td>
                     <% if(transaction.amount>0){%>
-                        <td>Received from <%- transaction.details %></td>
+                        <td><%- transaction.details %></td>
                         <td id="pos">+<%- transaction.amount %></td>
                     <%}else{%>
-                        <td>Sent to <%- transaction.details %></td>
+                        <td><%- transaction.details %></td>
                         <td id="neg"><%- transaction.amount %></td>
                     <%}%>
                 </tr>
@@ -37,7 +37,7 @@
     </div>
 
     <script>
-        document.getElementById("list").innerHTML = "<a href='/account/<%-email%>'>Go to Account</a>";
+        document.getElementById("list").innerHTML = "<a href='/account'>Go to Account</a>";
     </script>
 
 <%- include('../partials/footer') %>

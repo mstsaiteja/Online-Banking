@@ -5,7 +5,7 @@
 	
 <%- include('../partials/body') %>
     
-    <form style="top: 150px" action="/account/transfer_money/<%-email%>" method="post" onsubmit="return validation()">
+    <form style="top: 150px" action="/account/transfer_money" method="post" onsubmit="return validation()">
         <div id="info">Transfer Money</div>
         <div>
 			<label for="receiver">Receiver Email</label><br>
@@ -30,7 +30,7 @@
 		document.getElementById("warn").style.display="block";
 		setTimeout(()=>{document.getElementById("warn").style.display="none"},3000);
 
-		document.getElementById("list").innerHTML = "<a href='/account/<%-email%>'>Go to Account</a>";
+		document.getElementById("list").innerHTML = "<a href='/account'>Go to Account</a>";
 
 		function validation(){
 			const email = '<%- email%>';

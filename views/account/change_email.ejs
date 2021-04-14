@@ -5,7 +5,7 @@
 
 <%- include('../partials/body') %>
 	
-	<form style="top: 200px" action = "/account/otp/<%-email%>" onsubmit = "return validate()" method="post">
+	<form style="top: 200px" action = "/account/otp" onsubmit = "return validate()" method="post">
 		<div id="info">Change Email</div>
 		<div>
 			<label for="email">New Email</label><br>
@@ -22,7 +22,7 @@
 		doc.style.display="block";
 		setTimeout(()=>{doc.style.display="none"},3000);
 
-		document.getElementById("list").innerHTML = "<a href='/account/<%-email%>'>Go to Account</a>";
+		document.getElementById("list").innerHTML = "<a href='/account'>Go to Account</a>";
 
 		function validate(){
 			const new_email = document.getElementById("email").value;
