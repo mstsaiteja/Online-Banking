@@ -8,9 +8,7 @@ sgMail.setApiKey(API_KEY);
 function sendotp(receiver)
 {
 	const otp = Math.floor(Math.random()*90000+10000);
-
 	const time = new Date(Date.now() + 10*60000);
-
 	const msg = `Your OTP for Online Banking System is ${otp} and is valid till ${time}`;
 
 	const message = {
