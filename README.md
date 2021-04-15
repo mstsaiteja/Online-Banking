@@ -13,3 +13,5 @@ It also allows to transfer amount and receive amount from your friends account
 It also displays all the transactions you have done with your account
 
 NOTE: Real Money is not used here. Just a demonstration for managing the account
+
+Deployed on heroku link: https://obscure-inlet-06290.herokuapp.com/
