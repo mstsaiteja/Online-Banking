@@ -62,3 +62,7 @@ app.get('/about',checkNotAuthenticated, (req, res) => {
 app.listen(PORT, async (err) => {
     console.log(`Listening on port ${PORT}...!`);
 });
+
+app.use((req,res,next)=>{
+    res.render("pageNotFound");
+});

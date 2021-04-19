@@ -71,3 +71,13 @@ a:hover {
     left: 15vw;
     top: 150px;
 }
+
+#pagenotfound {
+    color: red;
+    font-size: 50px;
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
